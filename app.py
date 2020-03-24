@@ -234,7 +234,8 @@ def getdata():
     
     df=json_normalize(sorted_data)
     df=df.drop(['coordinates.longitude','coordinates.latitude','last_updated','latest.recovered','id','country_code'],axis=1)
-    df.columns=['Country','Confirmed Cases','Deaths','Province',]
+    df.rename(columns = {'province':'Province','latest.deaths':'Deaths','latest.confirmed':'Confirmed Cases','country':'Country'}, inplace = True)
+    #df.columns=['Country','Confirmed Cases','Deaths','Province',]
 
     
     return df
@@ -244,8 +245,16 @@ def main():
     menuItems=['Guidelines','Statistics']
     st.sidebar.title('Menu')
     
-    itemSelected=st.sidebar.selectbox('',menuItems)
     
+    itemSelected=st.sidebar.selectbox('',menuItems)
+    hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            </style>
+            """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+    st.sidebar.info('Made by Abhay')
    
 
 
@@ -271,6 +280,7 @@ def main():
             st.markdown(malayalam())
         elif(lang=='ಕನ್ನಡ'):
             st.markdown(kannada())
+        
 
     if(itemSelected=='Statistics'):
         ogstatsurl='https://coronavirus-tracker-api.herokuapp.com/v2/latest'
@@ -317,6 +327,7 @@ def main():
 
         
         st.table(df)
+        
 
 plt.show()
         
