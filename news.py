@@ -1,5 +1,6 @@
 from urllib.request import urlopen,Request 
 from bs4 import BeautifulSoup as soup
+import requests
 
 def list_cities():
     cities=["Delhi","Andhra Pradesh","Arunachal Pradesh ","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal","Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli","Daman and Diu","Lakshadweep","Puducherry"]
@@ -16,8 +17,8 @@ def news(city='india'):
             'Connection': 'keep-alive'}
     url="https://www.google.com/search?q=covid+19+"+place+"&sxsrf=ALeKk02Xr7Z-nSW9zKyGbCVfeDSNWp13qQ:1585121646630&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjm-bCljrXoAhXq4zgGHYSTB_8Q_AUoAXoECBoQAw&biw=1920&bih=937"
 
-    req = Request(url=url, headers=headers) 
-    html = urlopen(req).read() 
+    req = requests.get(url=url, headers=headers) 
+    html = req.text
 
     parsed_data=soup(html,'html.parser')
 
@@ -45,5 +46,7 @@ def news(city='india'):
         i=i+1
     
     return news_markdown
+
+
 
 
