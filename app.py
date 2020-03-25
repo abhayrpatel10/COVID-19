@@ -75,7 +75,7 @@ def main():
     if(itemSelected=='Guidelines'):
         
         langugaes=['English','हिंदी','ગુજરાતી','தமிழ்','తెలుగు','ਪੰਜਾਬੀ','മലയാളം','ಕನ್ನಡ']
-        lang=st.selectbox('Choose Langugae',langugaes)
+        lang=st.selectbox('Choose Language',langugaes)
         st.subheader('WHO Guidelines')
         
         if(lang=='English'):
