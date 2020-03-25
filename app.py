@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt; plt.rcdefaults()
 import numpy as np
 import matplotlib.pyplot as plt 
 from pandas.io.json import json_normalize
-from news import *
+from news import news,list_cities
 from PIL import Image
 from symptoms import symptoms
 
@@ -158,7 +158,9 @@ def main():
         st.markdown(news(choice))
 
         st.header('Central News')
-        st.markdown(news())
+        data=news()
+        print(data)
+        st.markdown(data)
 
     if(itemSelected=='Symptoms'):
         st.markdown(symptoms())
