@@ -155,10 +155,10 @@ def main():
         image = Image.open('verified.png')
         st.image(image)
         choice=st.selectbox('Choose state or UT',list_cities())
-        st.write(news(choice))
+        st.markdown(news(choice))
 
         st.header('Central News')
-        st.write(news())
+        st.markdown(news())
 
     if(itemSelected=='Symptoms'):
         st.markdown(symptoms())
