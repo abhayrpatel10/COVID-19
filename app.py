@@ -8,6 +8,10 @@ import matplotlib.pyplot as plt; plt.rcdefaults()
 import numpy as np
 import matplotlib.pyplot as plt 
 from pandas.io.json import json_normalize
+from news import *
+from PIL import Image
+from symptoms import symptoms
+
 
 #labelling the bar plot
 def autolabel(rects):
@@ -40,7 +44,7 @@ def getdata():
     return df
 def main():
     st.title('COVID - 19')
-    menuItems=['Guidelines','Statistics','Helpline']
+    menuItems=['Guidelines','Statistics','News','Symptoms','Helpline']
     st.sidebar.title('Menu')
     
     
@@ -52,7 +56,8 @@ def main():
             </style>
             """
     st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-    st.sidebar.info('Made by Abhay')
+    github='''[ Fork/Star on Github](https://github.com/abhayrpatel10/COVID-19)'''
+    st.sidebar.info(github)
 
     if(itemSelected=='Helpline'):
         st.markdown(helpline())
@@ -145,6 +150,20 @@ def main():
         #dsplaying all data
         st.table(df)
         
+    if(itemSelected=='News'):
+        st.subheader('News')
+        image = Image.open('verified.png')
+        st.image(image)
+        choice=st.selectbox('Choose state or UT',list_cities())
+        st.write(news(choice))
+
+        st.header('Central News')
+        st.write(news())
+
+    if(itemSelected=='Symptoms'):
+        st.markdown(symptoms())
+        st.write('Source : WHO')
+
 
 
         
