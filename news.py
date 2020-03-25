@@ -17,8 +17,10 @@ def news(city='india'):
             'Connection': 'keep-alive'}
     url="https://www.google.com/search?q=covid+19+"+place+"&sxsrf=ALeKk02Xr7Z-nSW9zKyGbCVfeDSNWp13qQ:1585121646630&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjm-bCljrXoAhXq4zgGHYSTB_8Q_AUoAXoECBoQAw&biw=1920&bih=937"
 
-    req = requests.get(url=url, headers=headers) 
-    html = req.text
+    
+
+    req = Request(url=url, headers=headers) 
+    html = urlopen(req).read()
 
     parsed_data=soup(html,'html.parser')
 
@@ -47,6 +49,8 @@ def news(city='india'):
     
     return news_markdown
 
+
+print(news())
 
 
 

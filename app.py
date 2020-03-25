@@ -1,5 +1,6 @@
 import streamlit as st
 from urllib.request import urlopen as request
+from urllib.request import Request,urlopen
 import json
 from bs4 import BeautifulSoup as soup
 from languages import *
@@ -164,15 +165,11 @@ def main():
         choice=st.selectbox('Choose state or UT',list_cities())
         place=choice.replace(" ","+")
 
-        headers= {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
-                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-                'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
-                'Accept-Encoding': 'none',
-                'Accept-Language': 'en-US,en;q=0.8',}
+        headers= {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11'}
         url="https://www.google.com/search?q=covid+19+"+place+"&sxsrf=ALeKk02Xr7Z-nSW9zKyGbCVfeDSNWp13qQ:1585121646630&source=lnms&tbm=nws&sa=X&ved=2ahUKEwjm-bCljrXoAhXq4zgGHYSTB_8Q_AUoAXoECBoQAw&biw=1920&bih=937"
 
-        req = requests.get(url=url, headers=headers) 
-        html = req.text
+        req = Request(url=url, headers=headers) 
+        html = urlopen(req).read()
 
         parsed_data=soup(html,'html.parser')
 
