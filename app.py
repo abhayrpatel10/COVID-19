@@ -185,7 +185,7 @@ def main():
         news=[n.text.strip().replace(u'\xa0', u' ') for n in news_data]
 
         
-        news_markdown=''
+        
 
         for i in range(0,len(news)):
             temp='''
@@ -193,10 +193,10 @@ def main():
             ### %s 
             ###
             '''%(headlines[i],links_list[i],news[i])
-            news_markdown=news_markdown+temp
+            st.markdown(temp)
             i=i+1
     
-        st.markdown(news_markdown)
+        
 
         
 
