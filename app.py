@@ -53,7 +53,7 @@ def getdata():
     return df
 def main():
     st.title('COVID - 19')
-    menuItems=['Guidelines','Statistics','Symptoms','Helpline']
+    menuItems=['Guidelines','Statistics','News','Symptoms','Helpline']
     st.sidebar.title('Menu')
     
     
