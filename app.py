@@ -13,6 +13,8 @@ from PIL import Image
 from symptoms import symptoms
 import requests
 from news import news
+from hospitals import hospitals
+from test import indianStats
 
 
 def list_cities():
@@ -53,7 +55,7 @@ def getdata():
     return df
 def main():
     st.title('COVID - 19')
-    menuItems=['Guidelines','Statistics','News','Symptoms','Helpline']
+    menuItems=['Guidelines','India Statistics','News','Worldwide Statistics','Hospital Stats India','Symptoms','Helpline']
     st.sidebar.title('Menu')
     
     
@@ -72,7 +74,10 @@ def main():
         st.markdown(helpline())
    
 
-
+    if(itemSelected=='Hospital Stats India'):
+        hospitals()
+    if(itemSelected=='India Statistics'):
+        indianStats()
     if(itemSelected=='Guidelines'):
         
         langugaes=['English','हिंदी','ગુજરાતી','தமிழ்','తెలుగు','ਪੰਜਾਬੀ','മലയാളം','ಕನ್ನಡ']
@@ -97,7 +102,8 @@ def main():
             st.markdown(kannada())
         
 
-    if(itemSelected=='Statistics'):
+    if(itemSelected=='Worldwide Statistics'):
+        
         ogstatsurl='https://coronavirus-tracker-api.herokuapp.com/v2/latest'
         #making get request to the API
         client=request(ogstatsurl)
