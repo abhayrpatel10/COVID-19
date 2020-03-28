@@ -117,24 +117,24 @@ def main():
         st.markdown(deaths)
 
         ##Getting recovered data 
-        url='https://www.worldometers.info/coronavirus/'
-        client=request(url)
-        raw_html=client.read()
-        parsed_html=soup(raw_html,'html.parser')
-        #-----------Number of people recovered -variable name - =recoverednum
+        # url='https://www.worldometers.info/coronavirus/'
+        # client=request(url)
+        # raw_html=client.read()
+        # parsed_html=soup(raw_html,'html.parser')
+        # #-----------Number of people recovered -variable name - =recoverednum
         
         
-        #using beautiful soup to find div tag with given style
-        recoverednum=parsed_html.find('div',{'style':'color:#8ACA2B '}).text
-        recoverednum=recoverednum.strip().replace(",","")
-        recovered='''## Recovered ``` %s ``` '''%(recoverednum)
-        st.markdown(recovered)
+        # #using beautiful soup to find div tag with given style
+        # recoverednum=parsed_html.find('div',{'style':'color:#8ACA2B '}).text
+        # recoverednum=recoverednum.strip().replace(",","")
+        # recovered='''## Recovered ``` %s ``` '''%(recoverednum)
+        # st.markdown(recovered)
 
         
-        objects = ('Recovered', 'Deaths', 'Active')#labels for the bar chart
+        objects = ('Deaths', 'Total Cases')#labels for the bar chart
         y_pos = np.arange(len(objects))
-        active=int(confnum)-(int(recoverednum)+int(deathnum))#finding number of active cases
-        values = [int(recoverednum),int(deathnum),int(active)]#values for the bar chart
+        #active=int(confnum)-(int(recoverednum)+int(deathnum))#finding number of active cases
+        values = [int(deathnum),int(confnum)]#values for the bar chart
         ax=plt.bar(y_pos, values, align='center', alpha=0.7)#bar chart ----plotted using matplotlib
         plt.xticks(y_pos, objects)
         
