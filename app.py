@@ -14,7 +14,7 @@ from symptoms import symptoms
 import requests
 from news import news
 from hospitals import hospitals
-from test import indianStats
+from india import indianStats
 
 
 def list_cities():
